@@ -12,7 +12,7 @@ interface CrashLogDao {
     suspend fun getCrashLogs(): List<CrashLogEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFoodEntry(foodEntry: CrashLogEntity)
+    suspend fun insertCrashLogEntry(crashLogEntity: CrashLogEntity)
 
     @Query("DELETE FROM crashLog")
     suspend fun clearCrashLogs()
