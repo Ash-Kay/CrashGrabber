@@ -18,10 +18,15 @@ object Android {
 }
 
 object Hilt {
-    const val daggerCompiler = "com.google.dagger:hilt-android-compiler:2.28-alpha"
-    const val hiltCompiler = "androidx.hilt:hilt-compiler:1.0.0-alpha01"
-    const val hiltViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
-    const val hiltAndroid = "com.google.dagger:hilt-android:2.28-alpha"
+    private const val hiltVersion = "2.44"
+    const val hiltAndroid = "com.google.dagger:hilt-android:${hiltVersion}"
+    const val hiltKapt = "com.google.dagger:hilt-compiler:${hiltVersion}"
+}
+
+object Dagger {
+    private const val daggerVersion = "2.47"
+    const val dagger =  "com.google.dagger:dagger:${daggerVersion}"
+    const val daggerKapt =  "com.google.dagger:dagger-compiler:${daggerVersion}"
 }
 
 object ViewPager {
@@ -104,6 +109,7 @@ object Glide {
 object Room {
     private const val room = "2.5.2"
     const val runtime = "androidx.room:room-runtime:${room}"
+    const val ktx = "androidx.room:room-ktx:${room}"
     const val annotationProcessor = "androidx.room:room-compiler:${room}"
 }
 

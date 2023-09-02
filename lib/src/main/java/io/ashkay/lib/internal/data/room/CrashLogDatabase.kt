@@ -10,7 +10,7 @@ import io.ashkay.lib.internal.data.entity.CrashLogEntity
 )
 abstract class CrashLogDatabase : RoomDatabase() {
 
-    abstract val foodEntryDao: CrashLogDao
+    abstract val crashLogDao: CrashLogDao
 
     companion object {
         const val DATABASE_NAME = "crash_grabber"
