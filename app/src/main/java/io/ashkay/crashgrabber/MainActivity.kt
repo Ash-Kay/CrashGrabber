@@ -32,8 +32,9 @@ class MainActivity : ComponentActivity() {
         }
 
         CrashGrabber.init(application)
+        CrashGrabber.createShortcut(this)
 
-        CrashGrabber.launchActivity(this)
+//        CrashGrabber.launchActivity(this)
 
 //        throw Exception("WTF")
     }

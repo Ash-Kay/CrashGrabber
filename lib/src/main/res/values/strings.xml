@@ -1,3 +1,4 @@
 <resources>
     <string name="title_activity_crash_grabber_main">CrashGrabberMainActivity</string>
+    <string name="shortcut_label">CrashGrabber</string>
 </resources>
