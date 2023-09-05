@@ -8,6 +8,9 @@ import io.ashkay.lib.internal.data.entity.CrashLogEntity
 
 @Dao
 interface CrashLogDao {
+    @Query("SELECT * FROM crashLog WHERE id=:id")
+    suspend fun getCrashById(id: Int): CrashLogEntity
+
     @Query("SELECT * FROM crashLog")
     suspend fun getCrashLogs(): List<CrashLogEntity>
 

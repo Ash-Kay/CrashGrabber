@@ -25,12 +25,12 @@ object Hilt {
 
 object Dagger {
     private const val daggerVersion = "2.47"
-    const val dagger =  "com.google.dagger:dagger:${daggerVersion}"
-    const val daggerKapt =  "com.google.dagger:dagger-compiler:${daggerVersion}"
+    const val dagger = "com.google.dagger:dagger:${daggerVersion}"
+    const val daggerKapt = "com.google.dagger:dagger-compiler:${daggerVersion}"
 }
 
 object ViewPager {
-    const val viewPager2  = "androidx.viewpager2:viewpager2:1.0.0"
+    const val viewPager2 = "androidx.viewpager2:viewpager2:1.0.0"
 }
 
 object GoogleServices {
@@ -39,7 +39,7 @@ object GoogleServices {
     const val googleServices = "com.google.gms:google-services:4.3.3"
 }
 
-object Firebase{
+object Firebase {
     const val firebaseAnalytics = "com.google.firebase:firebase-analytics:17.2.2"
 }
 
@@ -83,7 +83,7 @@ object LeakCanary {
 }
 
 object Paging {
-    private const val pagingVersion= "2.1.2"
+    private const val pagingVersion = "2.1.2"
     const val paging = "android.arch.paging:runtime:${pagingVersion}"
     const val pagingRx = "androidx.paging:paging-rxjava2:${pagingVersion}"
 }
@@ -111,6 +111,10 @@ object Room {
     const val runtime = "androidx.room:room-runtime:${room}"
     const val ktx = "androidx.room:room-ktx:${room}"
     const val annotationProcessor = "androidx.room:room-compiler:${room}"
+}
+
+object Gson {
+    const val gson = "com.google.code.gson:gson:2.10.1"
 }
 
 object Test {

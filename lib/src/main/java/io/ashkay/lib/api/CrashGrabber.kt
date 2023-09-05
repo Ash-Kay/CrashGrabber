@@ -9,6 +9,7 @@ import android.graphics.drawable.Icon
 import android.os.Build
 import android.util.Log
 import androidx.core.content.getSystemService
+import com.google.gson.Gson
 import io.ashkay.lib.R
 import io.ashkay.lib.internal.data.entity.CrashLogEntity
 import io.ashkay.lib.internal.di.CrashGrabberComponent
@@ -30,10 +31,35 @@ object CrashGrabber {
 
         Thread.setDefaultUncaughtExceptionHandler(CrashReporterExceptionHandler { _, throwable ->
             GlobalScope.launch {
-                println("ASHTEST: inserting crash log")
-                instance!!.getDao().insertCrashLogEntry(CrashLogEntity(throwable.message.orEmpty()))
+                instance!!.getDao().insertCrashLogEntry(
+                    CrashLogEntity(
+                        fileName = throwable.stackTrace[0].fileName,
+                        stacktrace = getStackTraceString(throwable),
+                        timestamp = System.currentTimeMillis(),
+                        meta = getDeviceMetaAsJson()
+                    )
+                )
             }
         })
+    }
+
+    private fun getDeviceMetaAsJson(): String? {
+        val os = System.getProperty("os.version") // OS version
+        val apiLevel = Build.VERSION.SDK_INT      // API Level
+        val device = Build.DEVICE           // Device
+        val model = Build.MODEL            // Model
+        val product = Build.PRODUCT          // Product
+
+        val map = HashMap<String, String>()
+        map["OS"] = os.orEmpty()
+        map["API_LEVEL"] = apiLevel.toString()
+        map["DEVICE"] = device.orEmpty()
+        map["MODEL"] = model.orEmpty()
+        map["PRODUCT"] = product.orEmpty()
+
+        return kotlin.runCatching {
+            Gson().toJson(map)
+        }.getOrNull()
     }
 
     fun getStackTraceString(tr: Throwable): String {

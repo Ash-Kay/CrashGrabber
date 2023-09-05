@@ -9,6 +9,10 @@ class ViewModelFactory @Inject constructor(
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (map[modelClass] == null) {
+            throw UninitializedPropertyAccessException("ViewModel ${modelClass} not registered in Dagger Module")
+        }
+
         @Suppress("UNCHECKED_CAST")
         return map[modelClass] as T
     }

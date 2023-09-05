@@ -1,15 +1,13 @@
 package io.ashkay.lib.internal.ui
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -17,8 +15,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import io.ashkay.lib.api.CrashGrabber
 import io.ashkay.lib.internal.data.entity.CrashLogEntity
@@ -26,20 +22,17 @@ import io.ashkay.lib.internal.ui.ui.theme.CrashGrabberTheme
 import io.ashkay.lib.internal.utils.ViewModelFactory
 import javax.inject.Inject
 
-class CrashGrabberMainActivity : ComponentActivity() {
-
+class CrashDetailsActivity : ComponentActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel: CrashGrabberMainViewModel by viewModels { viewModelFactory }
+    private val viewModel: CrashDetailsViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (CrashGrabber.instance == null) {
-            CrashGrabber.init(application)
-            CrashGrabber.instance!!.inject(this)
-        }
         CrashGrabber.instance!!.inject(this)
+
+        viewModel.getCrashById(intent.getIntExtra("id", -1))
 
 
         setContent {
@@ -50,7 +43,9 @@ class CrashGrabberMainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val state = viewModel.uiState.collectAsState()
-                    CrashLogList(state.value.crashLogs)
+                    state.value?.let {
+                        MainView(it)
+                    }
                 }
             }
         }
@@ -58,37 +53,36 @@ class CrashGrabberMainActivity : ComponentActivity() {
 }
 
 @Composable
-fun CrashLogList(crashLogs: List<CrashLogEntity>, modifier: Modifier = Modifier) {
-    LazyColumn {
-        items(crashLogs) {
-            val context = LocalContext.current
-            Column(Modifier.clickable {
-                context.startActivity(Intent(context, CrashDetailsActivity::class.java).apply {
-                    putExtra("id", it.id)
-                })
-            }) {
-                Text(
-                    text = it.fileName,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(
-                    text = it.stacktrace.substring(0..50),
-                )
-                Divider()
-            }
-        }
+fun MainView(state: CrashLogEntity, modifier: Modifier = Modifier) {
+    Column(
+        modifier = Modifier.verticalScroll(rememberScrollState())
+    ) {
+        Text(
+            text = state.timestamp.toString(),
+            modifier = modifier
+        )
+        Divider()
+        Text(
+            text = state.fileName,
+            modifier = modifier
+        )
+        Divider()
+        Text(
+            text = state.stacktrace,
+            modifier = modifier
+        )
+        Divider()
+        Text(
+            text = state.meta.orEmpty(),
+            modifier = modifier
+        )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun GreetingPreview2() {
     CrashGrabberTheme {
-        CrashLogList(
-            listOf(
-//                CrashLogEntity("preview crash list"),
-//                CrashLogEntity("preview crash list 2")
-            )
-        )
+//        MainView("Android")
     }
 }

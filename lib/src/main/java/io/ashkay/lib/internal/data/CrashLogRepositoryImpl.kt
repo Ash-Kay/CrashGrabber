@@ -5,6 +5,10 @@ import io.ashkay.lib.internal.data.room.CrashLogDao
 import io.ashkay.lib.internal.domain.repository.CrashLogRepository
 
 class CrashLogRepositoryImpl (private val crashLogDao: CrashLogDao): CrashLogRepository {
+    override suspend fun getCrashByIdFromDb(id: Int): CrashLogEntity {
+        return crashLogDao.getCrashById(id)
+    }
+
     override suspend fun getCrashLogsFromDb(): List<CrashLogEntity> {
         return crashLogDao.getCrashLogs()
     }
