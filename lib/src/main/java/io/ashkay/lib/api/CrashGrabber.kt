@@ -21,7 +21,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 object CrashGrabber {
-    lateinit var instance: CrashGrabberComponent
+    var instance: CrashGrabberComponent? = null
 
     private const val SHORTCUT_ID = "io.ashkay.crashgrabber"
 
@@ -31,7 +31,7 @@ object CrashGrabber {
         Thread.setDefaultUncaughtExceptionHandler(CrashReporterExceptionHandler { _, throwable ->
             GlobalScope.launch {
                 println("ASHTEST: inserting crash log")
-                instance.getDao().insertCrashLogEntry(CrashLogEntity(throwable.message.orEmpty()))
+                instance!!.getDao().insertCrashLogEntry(CrashLogEntity(throwable.message.orEmpty()))
             }
         })
     }

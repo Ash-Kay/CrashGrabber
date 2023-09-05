@@ -14,7 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import io.ashkay.crashgrabber.ui.theme.CrashGrabberTheme
 import io.ashkay.lib.api.CrashGrabber
-import kotlin.random.Random
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,10 +34,7 @@ class MainActivity : ComponentActivity() {
 
         CrashGrabber.init(application)
         CrashGrabber.createShortcut(this)
-
 //        CrashGrabber.launchActivity(this)
-
-//        throw Exception("WTF")
     }
 }
 
@@ -47,7 +45,15 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             text = "Hello $name!",
             modifier = modifier,
         )
-        Button(onClick = { throw Exception("WTF client ${Random.nextInt()}") }) {
+        Button(onClick = {
+            throw Exception(
+                "WTF client ${
+                    SimpleDateFormat("dd-M-yyyy hh:mm:ss").format(
+                        Calendar.getInstance().time
+                    )
+                }"
+            )
+        }) {
             Text(
                 text = "CrashMe",
                 modifier = modifier,
