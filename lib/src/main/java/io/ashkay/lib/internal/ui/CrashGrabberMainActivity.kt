@@ -35,11 +35,8 @@ class CrashGrabberMainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (CrashGrabber.instance == null) {
-            CrashGrabber.init(application)
-            CrashGrabber.instance!!.inject(this)
-        }
-        CrashGrabber.instance!!.inject(this)
+
+        CrashGrabber.getOrCreate(this).inject(this)
 
 
         setContent {

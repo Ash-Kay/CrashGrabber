@@ -30,10 +30,9 @@ class CrashDetailsActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        CrashGrabber.instance!!.inject(this)
+        CrashGrabber.getOrCreate(this).inject(this)
 
         viewModel.getCrashById(intent.getIntExtra("id", -1))
-
 
         setContent {
             CrashGrabberTheme {

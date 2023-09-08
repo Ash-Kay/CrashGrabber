@@ -1,6 +1,7 @@
 package io.ashkay.lib.internal.di
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
@@ -14,9 +15,9 @@ import javax.inject.Singleton
 class DataModule {
     @Provides
     @Singleton
-    fun provideNoteDatabase(applicationContext: Application): CrashLogDatabase {
+    fun provideNoteDatabase(context: Context): CrashLogDatabase {
         return Room.databaseBuilder(
-            applicationContext,
+            context.applicationContext,
             CrashLogDatabase::class.java,
             CrashLogDatabase.DATABASE_NAME
         ).build()

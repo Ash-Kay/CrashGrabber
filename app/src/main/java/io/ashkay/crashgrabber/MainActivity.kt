@@ -32,9 +32,14 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        CrashGrabber.init(application)
+        CrashGrabber.getOrCreate(this)
         CrashGrabber.createShortcut(this)
 //        CrashGrabber.launchActivity(this)
+    }
+
+    override fun onDestroy() {
+        CrashGrabber.clear()
+        super.onDestroy()
     }
 }
 

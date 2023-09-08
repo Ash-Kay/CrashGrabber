@@ -1,6 +1,6 @@
 package io.ashkay.lib.internal.di
 
-import android.app.Application
+import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import io.ashkay.lib.internal.data.room.CrashLogDao
@@ -19,6 +19,6 @@ interface CrashGrabberComponent {
 
     @Component.Factory
     interface Factory {
-        fun build(@BindsInstance application: Application): CrashGrabberComponent
+        fun build(@BindsInstance context: Context): CrashGrabberComponent
     }
 }
