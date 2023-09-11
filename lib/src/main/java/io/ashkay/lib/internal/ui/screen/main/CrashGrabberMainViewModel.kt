@@ -1,8 +1,9 @@
-package io.ashkay.lib.internal.ui
+package io.ashkay.lib.internal.ui.screen.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.ashkay.lib.internal.domain.domain.GetCrashLogsUsecase
+import io.ashkay.lib.internal.ui.state.MainUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -4,8 +4,8 @@ import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import io.ashkay.lib.internal.data.room.CrashLogDao
-import io.ashkay.lib.internal.ui.CrashDetailsActivity
-import io.ashkay.lib.internal.ui.CrashGrabberMainActivity
+import io.ashkay.lib.internal.ui.screen.detail.CrashDetailsActivity
+import io.ashkay.lib.internal.ui.screen.main.CrashGrabberMainActivity
 import javax.inject.Singleton
 
 @Singleton

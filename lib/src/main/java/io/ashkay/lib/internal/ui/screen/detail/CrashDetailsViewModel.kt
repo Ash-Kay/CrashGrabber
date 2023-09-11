@@ -1,4 +1,4 @@
-package io.ashkay.lib.internal.ui
+package io.ashkay.lib.internal.ui.screen.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

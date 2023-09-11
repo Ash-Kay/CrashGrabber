@@ -12,7 +12,8 @@ import io.ashkay.lib.R
 import io.ashkay.lib.internal.data.entity.CrashLogEntity
 import io.ashkay.lib.internal.di.CrashGrabberComponent
 import io.ashkay.lib.internal.di.DaggerCrashGrabberComponent
-import io.ashkay.lib.internal.ui.CrashGrabberMainActivity
+import io.ashkay.lib.internal.ui.screen.main.CrashGrabberMainActivity
+import io.ashkay.lib.internal.ui.screen.main.substringOrFull
 import io.ashkay.lib.internal.utils.CrashReporterExceptionHandler
 import io.ashkay.lib.internal.utils.getDeviceMetaAsJson
 import java.io.PrintWriter
@@ -39,10 +40,12 @@ object CrashGrabber {
     private fun registerUncaughtExceptionHandler(instance: CrashGrabberComponent) {
         Thread.setDefaultUncaughtExceptionHandler(CrashReporterExceptionHandler { _, throwable ->
             runBlocking {
+                val stackTrace = getStackTraceString(throwable)
                 instance.getDao().insertCrashLogEntry(
                     CrashLogEntity(
-                        fileName = throwable.stackTrace[0].fileName,
-                        stacktrace = getStackTraceString(throwable),
+                        fileName = throwable.stackTrace[0].fileName, //TODO: check if can crash
+                        message = throwable.message ?: stackTrace.substringOrFull(50),
+                        stacktrace = stackTrace,
                         timestamp = System.currentTimeMillis(),
                         meta = getDeviceMetaAsJson()
                     )

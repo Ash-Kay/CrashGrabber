@@ -13,6 +13,9 @@ data class CrashLogEntity(
     @ColumnInfo(name = "fileName")
     val fileName: String,
 
+    @ColumnInfo(name = "message")
+    val message: String,
+
     @ColumnInfo(name = "stacktrace")
     val stacktrace: String,
 

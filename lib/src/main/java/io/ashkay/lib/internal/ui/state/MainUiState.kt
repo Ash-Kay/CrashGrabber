@@ -1,4 +1,4 @@
-package io.ashkay.lib.internal.ui
+package io.ashkay.lib.internal.ui.state
 
 import io.ashkay.lib.internal.data.entity.CrashLogEntity
 

@@ -1,10 +1,12 @@
 package io.ashkay.crashgrabber
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -12,12 +14,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import io.ashkay.crashgrabber.MainActivity.CrashObjectContainer
 import io.ashkay.crashgrabber.ui.theme.CrashGrabberTheme
 import io.ashkay.lib.api.CrashGrabber
-import java.text.SimpleDateFormat
-import java.util.Calendar
 
 class MainActivity : ComponentActivity() {
+    class CrashObjectContainer {
+        lateinit var unInitLateInitVar: Context
+        val nullObject: Context? = null
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -25,16 +32,16 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.background,
                 ) {
-                    Greeting("From Client")
+                    MainView(CrashObjectContainer())
                 }
             }
         }
 
         CrashGrabber.getOrCreate(this)
         CrashGrabber.createShortcut(this)
-//        CrashGrabber.launchActivity(this)
+        startActivity(CrashGrabber.getLaunchIntent(this))
     }
 
     override fun onDestroy() {
@@ -44,23 +51,34 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Column {
-        Text(
-            text = "Hello $name!",
-            modifier = modifier,
-        )
+fun MainView(
+    crashObjectContainer: CrashObjectContainer,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = Modifier.padding(8.dp)) {
         Button(onClick = {
-            throw Exception(
-                "WTF client ${
-                    SimpleDateFormat("dd-M-yyyy hh:mm:ss").format(
-                        Calendar.getInstance().time
-                    )
-                }"
-            )
+            throw Exception("!TEST CRASH MESSAGE!")
         }) {
             Text(
-                text = "CrashMe",
+                text = "Custom message Crash",
+                modifier = modifier,
+            )
+        }
+
+        Button(onClick = {
+            crashObjectContainer.unInitLateInitVar.theme
+        }) {
+            Text(
+                text = "Crash lateinit var",
+                modifier = modifier,
+            )
+        }
+
+        Button(onClick = {
+            crashObjectContainer.nullObject!!.theme
+        }) {
+            Text(
+                text = "Crash null object access",
                 modifier = modifier,
             )
         }
@@ -69,8 +87,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun MainViewPreview() {
     CrashGrabberTheme {
-        Greeting("Android")
+        MainView(CrashObjectContainer())
     }
 }

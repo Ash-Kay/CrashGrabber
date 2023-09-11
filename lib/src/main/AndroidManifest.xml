@@ -3,12 +3,12 @@
 
     <application>
         <activity
-            android:name=".internal.ui.CrashDetailsActivity"
+            android:name=".internal.ui.screen.detail.CrashDetailsActivity"
             android:exported="false"
             android:label="@string/title_activity_crash_details"
             android:theme="@style/Theme.CrashGrabber" />
         <activity
-            android:name=".internal.ui.CrashGrabberMainActivity"
+            android:name=".internal.ui.screen.main.CrashGrabberMainActivity"
             android:exported="false"
             android:label="@string/title_activity_crash_grabber_main"
             android:theme="@style/Theme.CrashGrabber" />

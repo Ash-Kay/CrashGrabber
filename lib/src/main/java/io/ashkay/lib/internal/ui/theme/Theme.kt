@@ -1,4 +1,4 @@
-package io.ashkay.lib.internal.ui.ui.theme
+package io.ashkay.lib.internal.ui.theme
 
 import android.app.Activity
 import android.os.Build
