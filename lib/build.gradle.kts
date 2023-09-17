@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "io.ashkay.lib"
+    namespace = "io.ashkay.crashgrabber"
     compileSdk = 33
 
     defaultConfig {

@@ -14,5 +14,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "CrashGrabber"
-include(":app")
+include(":sample")
 include(":lib")
