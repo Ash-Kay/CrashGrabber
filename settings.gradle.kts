@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "CrashGrabber"
 include(":sample")
 include(":lib")
+include(":lib-no-op")
