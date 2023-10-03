@@ -27,6 +27,7 @@ object CrashGrabber {
 
     fun init(context: Context) {
         getOrCreate(context)
+        createShortcut(context)
     }
 
     internal fun getOrCreate(context: Context): CrashGrabberComponent {
@@ -75,7 +76,7 @@ object CrashGrabber {
      * Create a shortcut to launch CrashGrabber UI.
      * @param context An Android [Context].
      */
-    fun createShortcut(context: Context) {
+    private fun createShortcut(context: Context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) {
             return
         }
@@ -106,7 +107,7 @@ object CrashGrabber {
      * @return An Intent for the main CrashGrabber Activity that can be started with [Context.startActivity].
      */
     @JvmStatic
-    fun getLaunchIntent(context: Context): Intent {
+    private fun getLaunchIntent(context: Context): Intent {
         return Intent(context, CrashGrabberMainActivity::class.java)
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
