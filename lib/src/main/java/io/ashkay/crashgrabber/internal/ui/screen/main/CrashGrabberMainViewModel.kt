@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class CrashGrabberMainViewModel @Inject constructor(
+internal class CrashGrabberMainViewModel @Inject constructor(
     val getCrashLogsUsecase: GetCrashLogsUsecase
 ) : ViewModel() {
 

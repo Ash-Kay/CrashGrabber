@@ -8,7 +8,7 @@ import android.graphics.drawable.Icon
 import android.os.Build
 import android.util.Log
 import androidx.core.content.getSystemService
-import io.ashkay.crashgrabber.R
+import crashgrabber.R
 import io.ashkay.crashgrabber.internal.data.entity.CrashLogEntity
 import io.ashkay.crashgrabber.internal.di.CrashGrabberComponent
 import io.ashkay.crashgrabber.internal.di.DaggerCrashGrabberComponent
@@ -25,7 +25,11 @@ object CrashGrabber {
 
     private const val SHORTCUT_ID = "io.ashkay.crashgrabber"
 
-    fun getOrCreate(context: Context): CrashGrabberComponent {
+    fun init(context: Context) {
+        getOrCreate(context)
+    }
+
+    internal fun getOrCreate(context: Context): CrashGrabberComponent {
         instance?.let {
             return it
         }
@@ -59,7 +63,7 @@ object CrashGrabber {
         Thread.setDefaultUncaughtExceptionHandler(exceptionHandler)
     }
 
-    fun getStackTraceString(tr: Throwable): String {
+    private fun getStackTraceString(tr: Throwable): String {
         val sw = StringWriter()
         val pw = PrintWriter(sw)
         tr.printStackTrace(pw)

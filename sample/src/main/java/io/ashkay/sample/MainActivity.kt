@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        CrashGrabber.getOrCreate(this)
+        CrashGrabber.init(this)
         CrashGrabber.createShortcut(this)
         startActivity(CrashGrabber.getLaunchIntent(this))
     }

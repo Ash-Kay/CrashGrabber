@@ -8,7 +8,7 @@ import io.ashkay.crashgrabber.internal.data.entity.CrashLogEntity
     entities = [CrashLogEntity::class],
     version = 1
 )
-abstract class CrashLogDatabase : RoomDatabase() {
+internal abstract class CrashLogDatabase : RoomDatabase() {
 
     abstract val crashLogDao: CrashLogDao
 

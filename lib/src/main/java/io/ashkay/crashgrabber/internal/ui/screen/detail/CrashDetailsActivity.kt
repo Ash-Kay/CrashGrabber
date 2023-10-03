@@ -32,7 +32,7 @@ import io.ashkay.crashgrabber.internal.ui.theme.CrashGrabberTheme
 import io.ashkay.crashgrabber.internal.utils.ViewModelFactory
 import javax.inject.Inject
 
-class CrashDetailsActivity : ComponentActivity() {
+internal class CrashDetailsActivity : ComponentActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
@@ -62,7 +62,7 @@ class CrashDetailsActivity : ComponentActivity() {
 }
 
 @Composable
-fun DetailsView(state: DetailScreenModel, modifier: Modifier = Modifier) {
+internal fun DetailsView(state: DetailScreenModel, modifier: Modifier = Modifier) {
     LazyColumn(
 
 //        modifier = Modifier
@@ -121,7 +121,7 @@ fun DetailsView(state: DetailScreenModel, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun DetailsViewPreview() {
+internal fun DetailsViewPreview() {
     CrashGrabberTheme {
         Surface {
             DetailsView(

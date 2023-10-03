@@ -4,7 +4,7 @@ import io.ashkay.crashgrabber.internal.data.entity.CrashLogEntity
 import io.ashkay.crashgrabber.internal.domain.repository.CrashLogRepository
 import javax.inject.Inject
 
-class GetCrashByIdUsecase @Inject constructor(
+internal class GetCrashByIdUsecase @Inject constructor(
     private val repository: CrashLogRepository
 ) {
     suspend operator fun invoke(id: Int): CrashLogEntity {

@@ -7,7 +7,7 @@ import androidx.room.Query
 import io.ashkay.crashgrabber.internal.data.entity.CrashLogEntity
 
 @Dao
-interface CrashLogDao {
+internal interface CrashLogDao {
     @Query("SELECT * FROM crashLog WHERE id=:id")
     suspend fun getCrashById(id: Int): CrashLogEntity
 

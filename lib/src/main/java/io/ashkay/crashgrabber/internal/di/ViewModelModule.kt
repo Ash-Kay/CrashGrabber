@@ -9,7 +9,7 @@ import io.ashkay.crashgrabber.internal.ui.screen.detail.CrashDetailsViewModel
 import io.ashkay.crashgrabber.internal.ui.screen.main.CrashGrabberMainViewModel
 
 @Module
-abstract class ViewModelModule {
+internal abstract class ViewModelModule {
 
     @Binds
     @IntoMap

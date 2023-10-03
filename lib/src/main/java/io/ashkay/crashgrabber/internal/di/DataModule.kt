@@ -12,7 +12,7 @@ import io.ashkay.crashgrabber.internal.domain.repository.CrashLogRepository
 import javax.inject.Singleton
 
 @Module
-class DataModule {
+internal class DataModule {
     @Provides
     @Singleton
     fun provideNoteDatabase(context: Context): CrashLogDatabase {

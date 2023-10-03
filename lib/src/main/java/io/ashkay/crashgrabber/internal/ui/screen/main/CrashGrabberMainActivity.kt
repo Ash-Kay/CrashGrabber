@@ -32,7 +32,7 @@ import io.ashkay.crashgrabber.internal.utils.ViewModelFactory
 import io.ashkay.crashgrabber.internal.utils.toTime
 import javax.inject.Inject
 
-class CrashGrabberMainActivity : ComponentActivity() {
+internal class CrashGrabberMainActivity : ComponentActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -61,7 +61,7 @@ class CrashGrabberMainActivity : ComponentActivity() {
 }
 
 @Composable
-fun CrashLogList(crashLogs: List<MainScreenModel>, modifier: Modifier = Modifier) {
+internal fun CrashLogList(crashLogs: List<MainScreenModel>, modifier: Modifier = Modifier) {
     LazyColumn {
         items(crashLogs) {
             val context = LocalContext.current
@@ -93,7 +93,7 @@ fun CrashLogList(crashLogs: List<MainScreenModel>, modifier: Modifier = Modifier
     }
 }
 
-fun String.substringOrFull(endIndex: Int): String {
+internal fun String.substringOrFull(endIndex: Int): String {
     val length = this.length
     val minLength = minOf(length, endIndex) - 1
     return this.substring(0..minLength)
@@ -115,7 +115,7 @@ private fun startDetailsActivity(
 @Preview(showBackground = true)
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun MainActivityPreview() {
+internal fun MainActivityPreview() {
     CrashGrabberTheme {
         Surface {
             CrashLogList(

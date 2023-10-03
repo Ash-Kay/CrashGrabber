@@ -3,7 +3,7 @@ package io.ashkay.crashgrabber.internal.utils
 import android.os.Build
 import com.google.gson.Gson
 
-fun getDeviceMetaAsJson(): String? {
+internal fun getDeviceMetaAsJson(): String? {
     val os = System.getProperty("os.version") // OS version
     val apiLevel = Build.VERSION.SDK_INT      // API Level
     val device = Build.DEVICE           // Device

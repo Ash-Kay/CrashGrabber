@@ -1,6 +1,6 @@
 package io.ashkay.crashgrabber.internal.ui.model
 
-data class DetailScreenModel(
+internal data class DetailScreenModel(
     val id: Int,
     val fileName: String,
     val stacktrace: String,

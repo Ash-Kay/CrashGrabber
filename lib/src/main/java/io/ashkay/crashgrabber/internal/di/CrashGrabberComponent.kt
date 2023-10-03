@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [ViewModelModule::class, DataModule::class])
-interface CrashGrabberComponent {
+internal interface CrashGrabberComponent {
 
     fun inject(crashGrabber: CrashGrabberMainActivity)
     fun inject(crashDetailsActivity: CrashDetailsActivity)

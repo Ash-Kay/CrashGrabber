@@ -8,7 +8,7 @@ import io.ashkay.crashgrabber.internal.ui.model.MainScreenModel
 import java.lang.reflect.Type
 
 
-fun CrashLogEntity.toMainScreenModel(): MainScreenModel {
+internal fun CrashLogEntity.toMainScreenModel(): MainScreenModel {
     return MainScreenModel(
         id = this.id,
         fileName = this.fileName,
@@ -17,7 +17,7 @@ fun CrashLogEntity.toMainScreenModel(): MainScreenModel {
     )
 }
 
-fun CrashLogEntity.toDetailScreenModel(): DetailScreenModel {
+internal fun CrashLogEntity.toDetailScreenModel(): DetailScreenModel {
 
     val metaMap = kotlin.runCatching {
         val type: Type = object : TypeToken<Map<String, String>>() {}.type
