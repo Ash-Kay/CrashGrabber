@@ -24,7 +24,6 @@ To start using CrashGrabber, just do the folling on you application's `onCreate(
 
 ```kotlin
 CrashGrabber.init(context)
-CrashGrabber.createShortcut(context)
 ```
 
 That's it! 🎉 CrashGrabber will now record crashes in your app.
